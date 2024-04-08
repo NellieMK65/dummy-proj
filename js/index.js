@@ -3,6 +3,7 @@ const BASE_URL = 'http://localhost:3000/films';
 document.addEventListener('DOMContentLoaded', () => {
 	fetchMovies();
 
+	// search movies
 	const form = document.querySelector('#search-form');
 	form.addEventListener('submit', (e) => {
 		// prevent default behavior
@@ -14,6 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		} else {
 			fetchMovies();
 		}
+	});
+
+	// add movie
+	const addMovieForm = document.querySelector('#add-movie-form');
+	addMovieForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(addMovieForm);
+		const data = Object.fromEntries(formData);
+
+		addMovie(data);
 	});
 });
 
@@ -84,6 +96,9 @@ function renderMovie(movie) {
 	const button = document.createElement('button');
 	button.classList.add('btn', 'btn-primary');
 	button.innerText = 'Buy movie';
+	button.addEventListener('click', () => {
+		alert(`Movie with id ${movie.id} clicked`);
+	});
 
 	cardBody.append(title, description, seats, button);
 
@@ -92,4 +107,27 @@ function renderMovie(movie) {
 
 	// append each card to the movie container
 	moviesContainer.appendChild(parentDiv);
+}
+
+function addMovie(movie) {
+	// console.log(JSON.stringify({ ...movie, tickets_sold: 0 }));
+	fetch(`${BASE_URL}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ ...movie, tickets_sold: 0 }),
+	})
+		.then((res) => res.json())
+		.then(() => {
+			// if movie is added successfully
+			// 1. close the modal
+			const myModalEl = document.getElementById('exampleModal');
+			const modal = bootstrap.Modal.getInstance(myModalEl);
+			modal.hide();
+
+			// 2. refetch our movies
+			fetchMovies();
+		})
+		.catch((error) => console.log(error));
 }

@@ -32,7 +32,129 @@
 				</button>
 			</form>
 
+			<button
+				type="button"
+				class="btn btn-primary mb-3"
+				data-bs-toggle="modal"
+				data-bs-target="#exampleModal"
+			>
+				Add movie
+			</button>
+
 			<div class="row row-cols-xl-4 gap-2" id="movies"></div>
+		</div>
+
+		<div
+			class="modal fade"
+			id="exampleModal"
+			tabindex="-1"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">
+							Add movie
+						</h1>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<form id="add-movie-form">
+						<div class="modal-body">
+							<div>
+								<label for="title" class="col-form-label"
+									>Title:</label
+								>
+								<input
+									required
+									name="title"
+									type="text"
+									class="form-control"
+									id="title"
+								/>
+							</div>
+							<div>
+								<label for="description" class="col-form-label"
+									>Description:</label
+								>
+								<textarea
+									required
+									name="description"
+									class="form-control"
+									id="description"
+								></textarea>
+							</div>
+							<div class="row">
+								<div class="col">
+									<label for="runtime" class="col-form-label"
+										>Runtime:</label
+									>
+									<input
+										required
+										name="runtime"
+										type="number"
+										class="form-control"
+										id="runtime"
+									/>
+								</div>
+								<div class="col">
+									<label for="showtime" class="col-form-label"
+										>Showtime:</label
+									>
+									<input
+										required
+										name="showtime"
+										type="time"
+										class="form-control"
+										id="showtime"
+									/>
+								</div>
+							</div>
+							<div>
+								<label for="capacity" class="col-form-label"
+									>Capacity:</label
+								>
+								<input
+									required
+									name="capacity"
+									type="number"
+									class="form-control"
+									id="capacity"
+								/>
+							</div>
+							<div>
+								<label for="poster" class="col-form-label"
+									>Poster:</label
+								>
+								<input
+									required
+									name="poster"
+									type="url"
+									class="form-control"
+									id="poster"
+								/>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal"
+							>
+								Close
+							</button>
+							<button type="submit" class="btn btn-primary">
+								Save
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 
 		<script src="./js/index.js"></script>

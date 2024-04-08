@@ -150,6 +150,26 @@
 			"tickets_sold": 33,
 			"description": "Delinquent teen-agers ingest a substance and grow thirty feet tall, then proceed to take over a small town.",
 			"poster": "https://www.gstatic.com/tv/thumb/v22vodart/37991/p37991_v_v8_aa.jpg"
+		},
+		{
+			"id": "1f37",
+			"title": "Avatar",
+			"description": "desc",
+			"runtime": "120",
+			"showtime": "11:43",
+			"capacity": "20",
+			"poster": "https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg",
+			"tickets_sold": 0
+		},
+		{
+			"id": "dd2a",
+			"title": "Arcane",
+			"description": "desc",
+			"runtime": "140",
+			"showtime": "11:52",
+			"capacity": "120",
+			"poster": "https://sites.duke.edu/dukeiff/files/2022/02/Screen-Shot-2022-02-22-at-12.37.19-PM.png",
+			"tickets_sold": 0
 		}
 	]
 }
