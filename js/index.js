@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:3000/films';
+const BASE_URL =
+	'https://my-json-server.typicode.com/NellieMK65/dummy-proj/films';
 
 document.addEventListener('DOMContentLoaded', () => {
 	fetchMovies();
