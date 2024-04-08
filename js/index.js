@@ -2,9 +2,22 @@ const BASE_URL = 'http://localhost:3000/films';
 
 document.addEventListener('DOMContentLoaded', () => {
 	fetchMovies();
+
+	const form = document.querySelector('#search-form');
+	form.addEventListener('submit', (e) => {
+		// prevent default behavior
+		e.preventDefault();
+		const input = document.querySelector('#search');
+
+		if (input.value) {
+			fetchMovies(input.value);
+		} else {
+			fetchMovies();
+		}
+	});
 });
 
-function fetchMovies() {
+function fetchMovies(searchTerm = '') {
 	fetch(`${BASE_URL}`, {
 		method: 'GET',
 		headers: {
@@ -13,7 +26,22 @@ function fetchMovies() {
 	})
 		.then((res) => res.json())
 		.then((movies) => {
-			movies.forEach((movie) => renderMovie(movie));
+			// clear movies
+			document.querySelector('#movies').innerHTML = '';
+
+			// if search term is available we filter
+			if (searchTerm) {
+				// filter out movies that match the search input
+				movies
+					.filter((movie) =>
+						movie.title
+							.toLowerCase()
+							.includes(searchTerm.toLowerCase())
+					)
+					.forEach((movie) => renderMovie(movie));
+			} else {
+				movies.forEach((movie) => renderMovie(movie));
+			}
 		})
 		.catch((err) => console.log(err));
 }
@@ -48,12 +76,16 @@ function renderMovie(movie) {
 	description.innerText = movie.description;
 	description.style.minHeight = '150px';
 
+	const seats = document.createElement('p');
+	seats.className = 'card-text';
+	seats.innerText = `Seats available: ${movie.capacity - movie.tickets_sold}`;
+
 	// button
 	const button = document.createElement('button');
 	button.classList.add('btn', 'btn-primary');
 	button.innerText = 'Buy movie';
 
-	cardBody.append(title, description, button);
+	cardBody.append(title, description, seats, button);
 
 	// append card body to parent div
 	parentDiv.appendChild(cardBody);
